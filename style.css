@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #0b051a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+}
+
+.phone-container {
+    width: 100%;
+    max-width: 414px;
+    height: 95vh;
+    /* Путь к фону теперь прямой */
+    background: url('bg.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 40px;
+    border: 6px solid #222;
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    overflow: hidden;
+}
+
+.header { padding-top: 30px; text-align: center; }
+.logo { font-size: 32px; font-weight: 900; color: white; text-shadow: 0 0 10px #ffd700, 2px 2px 0 #000; line-height: 0.9; }
+.logo span { color: #ffd700; }
+
+.stats-container { display: flex; justify-content: space-around; padding: 20px 10px; }
+.stat-card { background: rgba(0, 0, 0, 0.6); border: 1px solid #444; border-radius: 12px; padding: 10px; width: 40%; text-align: center; }
+.label { font-size: 10px; color: #aaa; text-transform: uppercase; display: block; }
+.value { font-size: 18px; font-weight: bold; }
+.green { color: #00ffcc; }
+.gold { color: #ffd700; }
+
+.character-section { flex: 1; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 10px; }
+#hero { width: 85%; filter: drop-shadow(0 0 20px rgba(0,0,0,0.6)); cursor: pointer; transition: transform 0.1s; }
+#hero:active { transform: scale(0.95); }
+
+.bottom-menu { display: flex; justify-content: space-around; align-items: center; background: rgba(20, 10, 40, 0.9); backdrop-filter: blur(10px); width: 92%; margin: 0 auto 15px auto; border-radius: 20px; border: 1px solid #ffd700; padding: 10px 0; }
+.menu-item { display: flex; flex-direction: column; align-items: center; flex: 1; opacity: 0.6; }
+.menu-item img { width: 28px; height: 28px; margin-bottom: 4px; object-fit: contain; }
+.menu-item span { font-size: 9px; color: white; text-transform: uppercase; font-weight: bold; }
+.menu-item.active { opacity: 1; }
+.menu-item.active span { color: #ffd700; }
+
+@media (max-width: 600px) {
+    body { background-color: transparent; }
+    .phone-container { width: 100vw; height: 100vh; max-width: none; max-height: none; border: none; border-radius: 0; }
+}

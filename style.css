@@ -5,9 +5,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Используем dvh вместо vh, чтобы на айфоне не прыгало из-за адресной строки */
     height: 100vh;
-    height: 100dvh; 
+    height: 100dvh; /* Важно для айфона */
     font-family: 'Arial', sans-serif;
     overflow: hidden;
 }
@@ -21,27 +20,68 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    /* Убираем жесткие рамки для мобилок */
-    box-shadow: none;
     overflow: hidden;
 }
 
-.header { padding-top: 50px; text-align: center; } /* Чуть больше отступ сверху для челки айфона */
-.logo { font-size: 32px; font-weight: 900; color: white; text-shadow: 0 0 10px #ffd700, 2px 2px 0 #000; line-height: 0.9; }
-.logo span { color: #ffd700; }
+/* --- ИСПРАВЛЕНИЕ ЛОГОТИПА --- */
+.header {
+    padding-top: 40px; /* Отступ сверху (под челку айфона) */
+    flex-shrink: 0;    /* Запрещаем сжимать этот блок */
+}
 
-.stats-container { display: flex; justify-content: space-around; padding: 20px 10px; }
-.stat-card { background: rgba(0, 0, 0, 0.6); border: 1px solid #444; border-radius: 12px; padding: 10px; width: 40%; text-align: center; }
+.logo-img {
+    /* Делаем логотип компактным */
+    width: 60%;         /* Занимает 60% ширины вместо 85% */
+    max-width: 220px;   /* Максимум 220 пикселей */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+}
+
+/* Статистика */
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 10px; /* Чуть уменьшили отступы */
+    flex-shrink: 0;
+}
+.stat-card {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #444;
+    border-radius: 12px;
+    padding: 8px 10px;
+    width: 40%;
+    text-align: center;
+}
 .label { font-size: 10px; color: #aaa; text-transform: uppercase; display: block; }
-.value { font-size: 18px; font-weight: bold; }
+.value { font-size: 16px; font-weight: bold; } /* Чуть уменьшили шрифт цифр */
 .green { color: #00ffcc; }
 .gold { color: #ffd700; }
 
-.character-section { flex: 1; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 20px; }
-#hero { width: 90%; filter: drop-shadow(0 0 20px rgba(0,0,0,0.6)); cursor: pointer; transition: transform 0.1s; }
+/* --- ИСПРАВЛЕНИЕ ДЕДУШКИ --- */
+.character-section {
+    flex: 1; /* Занимает всё свободное место */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Дед стоит внизу своего блока */
+    padding-bottom: 10px;
+    overflow: hidden; /* Чтобы дед не вылезал */
+}
+
+#hero {
+    /* Умный размер для деда */
+    width: auto;       /* Ширина авто */
+    height: 85%;       /* Высота 85% от свободного места */
+    max-height: 45vh;  /* Но не больше 45% высоты экрана */
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(0,0,0,0.6));
+    cursor: pointer;
+    transition: transform 0.1s;
+}
 #hero:active { transform: scale(0.95); }
 
-/* ИСПРАВЛЕНИЕ МЕНЮ */
+/* Нижнее меню */
 .bottom-menu {
     display: flex;
     justify-content: space-around;
@@ -49,21 +89,19 @@ body {
     background: rgba(20, 10, 40, 0.95);
     backdrop-filter: blur(10px);
     
-    /* ШИРИНА И ОТСТУПЫ */
     width: 92%;
     margin: 0 auto;
-    /* Важно: отталкиваемся от низа экрана на 30 пикселей */
-    margin-bottom: 30px; 
+    margin-bottom: 30px; /* Отступ от низа экрана */
     padding: 12px 0;
     
     border-radius: 25px;
     border: 1px solid #ffd700;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    
-    /* Чтобы меню было поверх всего */
     position: relative;
     z-index: 100;
+    flex-shrink: 0; /* Меню нельзя сжимать */
 }
+
 .menu-item { display: flex; flex-direction: column; align-items: center; flex: 1; opacity: 0.6; }
 .menu-item img { width: 28px; height: 28px; margin-bottom: 4px; object-fit: contain; }
 .menu-item span { font-size: 9px; color: white; text-transform: uppercase; font-weight: bold; }
@@ -84,29 +122,4 @@ body {
 @keyframes moveUp {
     0% { transform: translateY(0); opacity: 1; }
     100% { transform: translateY(-100px); opacity: 0; }
-}
-/* Настройки для картинки логотипа */
-.logo-img {
-    width: 85%;           /* Занимает 85% ширины "телефона" */
-    max-width: 350px;     /* Не больше 350 пикселей */
-    height: auto;         /* Высота подстраивается автоматически */
-    display: block;
-    margin: 0 auto;       /* Центрирование */
-    
-    /* Отступ сверху, чтобы не прилипало к краю */
-    margin-top: 20px;     
-    margin-bottom: 10px;
-    
-    /* Красивая тень под логотипом для объема */
-    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
-    
-    /* Анимация появления (по желанию) */
-    animation: popIn 0.5s ease-out;
-}
-
-/* Анимация, чтобы логотип красиво "выпрыгивал" при запуске */
-@keyframes popIn {
-    0% { transform: scale(0.5); opacity: 0; }
-    80% { transform: scale(1.1); opacity: 1; }
-    100% { transform: scale(1); }
 }

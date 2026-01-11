@@ -24,27 +24,29 @@ body {
     overflow: hidden;
 }
 
-/* --- СЛОЙ С ОБЛАКАМИ (ИСПРАВЛЕНО ДЛЯ СИНЕЙ ЗОНЫ) --- */
+/* --- СЛОЙ С ОБЛАКАМИ (ОБРЕЗАННЫЙ) --- */
 .clouds-layer {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     
-    /* 1. Ограничиваем высоту (только верхняя треть экрана) */
+    /* Высота синей зоны */
     height: 35%; 
     
     background-image: url('clouds.png');
+    /* Гарантируем, что повторяется ТОЛЬКО по горизонтали */
     background-repeat: repeat-x;
-    
-    /* 2. ГЛАВНОЕ: Прижимаем облака к ВЕРХУ (было bottom) */
     background-position: top center; 
     
     pointer-events: none;
     z-index: 1;
     mix-blend-mode: overlay; 
+    
+    /* ✅ САМОЕ ВАЖНОЕ ИСПРАВЛЕНИЕ: */
+    /* Обрезаем всё, что вылезает ниже 35% высоты */
+    overflow: hidden; 
 }
-
 /* Задний слой облаков (медленный) */
 .layer-back {
     opacity: 0.6;
@@ -58,7 +60,7 @@ body {
     background-size: 90% auto;
     height: 75%; 
     animation: moveClouds 140s linear infinite;
-    transform: scaleX(-1); 
+    transform: scaleX(-1); /* Отражаем для разнообразия */
 }
 
 /* Анимация движения */
@@ -174,7 +176,7 @@ body {
     border-radius: 25px;
     border: 1px solid #ffd700;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    z-index: 1000; 
+    z-index: 1000; /* Меню всегда выше всего */
 }
 
 .menu-item {

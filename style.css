@@ -74,20 +74,19 @@ body {
     background: rgba(20, 10, 40, 0.95);
     backdrop-filter: blur(10px);
     
-    /* ШИРИНА И ОТСТУПЫ */
+    /* --- ГЛАВНЫЕ ИЗМЕНЕНИЯ --- */
+    position: absolute;  /* Жестко фиксируем позицию */
+    bottom: 30px;        /* Отступ от самого низа экрана */
+    left: 50%;           /* Ставим центр по горизонтали */
+    transform: translateX(-50%); /* Центрируем ровно посередине */
+    
     width: 92%;
-    margin: 0 auto;
-    /* Важно: отталкиваемся от низа экрана на 30 пикселей */
-    margin-bottom: 30px; 
     padding: 12px 0;
     
     border-radius: 25px;
     border: 1px solid #ffd700;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    
-    /* Чтобы меню было поверх всего */
-    position: relative;
-    z-index: 100;
+    z-index: 1000; /* Меню всегда поверх дедушки */
 }
 .menu-item { display: flex; flex-direction: column; align-items: center; flex: 1; opacity: 0.6; }
 .menu-item img { width: 28px; height: 28px; margin-bottom: 4px; object-fit: contain; }
@@ -149,3 +148,4 @@ body {
         transform: scale(1) translateY(0);
     }
 }
+

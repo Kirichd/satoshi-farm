@@ -5,9 +5,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Используем dvh вместо vh, чтобы на айфоне не прыгало из-за адресной строки */
     height: 100vh;
-    height: 100dvh; 
+    height: 100dvh;
     font-family: 'Arial', sans-serif;
     overflow: hidden;
 }
@@ -21,52 +20,76 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    /* Убираем жесткие рамки для мобилок */
-    box-shadow: none;
     overflow: hidden;
 }
 
-.header { padding-top: 50px; text-align: center; } /* Чуть больше отступ сверху для челки айфона */
-.logo { font-size: 32px; font-weight: 900; color: white; text-shadow: 0 0 10px #ffd700, 2px 2px 0 #000; line-height: 0.9; }
-.logo span { color: #ffd700; }
+/* --- ИЗМЕНЕНИЕ 1: ПОДНИМАЕМ ЛОГОТИП ВЫШЕ --- */
+.header {
+    padding-top: 20px; /* БЫЛО 40px. Сделали меньше, чтобы всё уехало вверх */
+    flex-shrink: 0;
+}
 
-.stats-container { display: flex; justify-content: space-around; padding: 20px 10px; }
-.stat-card { background: rgba(0, 0, 0, 0.6); border: 1px solid #444; border-radius: 12px; padding: 10px; width: 40%; text-align: center; }
+.logo-img {
+    width: 60%;
+    max-width: 220px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+    animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+    opacity: 0;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 5px 10px; /* Чуть уменьшили отступ между лого и статами */
+    flex-shrink: 0;
+}
+.stat-card {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #444;
+    border-radius: 12px;
+    padding: 8px 10px;
+    width: 40%;
+    text-align: center;
+}
 .label { font-size: 10px; color: #aaa; text-transform: uppercase; display: block; }
-.value { font-size: 18px; font-weight: bold; }
+.value { font-size: 16px; font-weight: bold; }
 .green { color: #00ffcc; }
 .gold { color: #ffd700; }
 
-.character-section { flex: 1; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 20px; }
-/* --- ПЕРСОНАЖ С АНИМАЦИЕЙ --- */
-#hero {
-    /* Размеры (сохраняем то, что настроили для Айфона) */
-    width: auto;
-    height: 85%;
-    max-height: 45vh;
-    object-fit: contain;
+/* --- ИЗМЕНЕНИЕ 2: ПОДНИМАЕМ ДЕДУШКУ --- */
+.character-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
     
-    /* Тени и курсор */
+    /* Самое важное: отступ снизу 100px. 
+       Это заставит дедушку стоять ВЫШЕ меню, а не за ним. */
+    padding-bottom: 110px; 
+    
+    overflow: hidden;
+}
+
+#hero {
+    width: auto;
+    height: 90%; /* Дед стал чуть крупнее */
+    max-height: 50vh;
+    object-fit: contain;
     filter: drop-shadow(0 0 20px rgba(0,0,0,0.6));
     cursor: pointer;
-    
-    /* Плавность для клика */
     transition: transform 0.1s;
-    
-    /* НОВАЯ СТРОКА: Подключаем анимацию "дыхания" */
-    /* 3 секунды длится один вдох-выдох, бесконечно */
     animation: idleBreath 3s ease-in-out infinite;
-    
-    /* Улучшает качество отрисовки при движении */
     will-change: transform;
 }
 
-/* Эффект нажатия (Тап) */
 #hero:active {
-    /* !important нужен, чтобы клик был сильнее анимации дыхания */
     transform: scale(0.95) !important;
 }
-/* ИСПРАВЛЕНИЕ МЕНЮ */
+
+/* --- ИЗМЕНЕНИЕ 3: УВЕЛИЧИВАЕМ МЕНЮ --- */
 .bottom-menu {
     display: flex;
     justify-content: space-around;
@@ -74,23 +97,44 @@ body {
     background: rgba(20, 10, 40, 0.95);
     backdrop-filter: blur(10px);
     
-    /* --- ГЛАВНЫЕ ИЗМЕНЕНИЯ --- */
-    position: absolute;  /* Жестко фиксируем позицию */
-    bottom: 30px;        /* Отступ от самого низа экрана */
-    left: 50%;           /* Ставим центр по горизонтали */
-    transform: translateX(-50%); /* Центрируем ровно посередине */
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
     
     width: 92%;
-    padding: 12px 0;
+    padding: 15px 0; /* Чуть больше "воздуха" внутри меню */
     
     border-radius: 25px;
     border: 1px solid #ffd700;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    z-index: 1000; /* Меню всегда поверх дедушки */
+    z-index: 1000;
 }
-.menu-item { display: flex; flex-direction: column; align-items: center; flex: 1; opacity: 0.6; }
-.menu-item img { width: 28px; height: 28px; margin-bottom: 4px; object-fit: contain; }
-.menu-item span { font-size: 9px; color: white; text-transform: uppercase; font-weight: bold; }
+
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    opacity: 0.6;
+}
+
+/* Увеличиваем иконки */
+.menu-item img { 
+    width: 36px;  /* Было 28px -> Стало 36px (крупнее) */
+    height: 36px;
+    margin-bottom: 6px; 
+    object-fit: contain; 
+}
+
+/* Увеличиваем текст */
+.menu-item span { 
+    font-size: 11px; /* Было 9px -> Стало 11px (читабельнее) */
+    color: white; 
+    text-transform: uppercase; 
+    font-weight: bold; 
+}
+
 .menu-item.active { opacity: 1; }
 .menu-item.active span { color: #ffd700; }
 
@@ -109,43 +153,15 @@ body {
     0% { transform: translateY(0); opacity: 1; }
     100% { transform: translateY(-100px); opacity: 0; }
 }
-/* Настройки для картинки логотипа */
-.logo-img {
-    width: 85%;           /* Занимает 85% ширины "телефона" */
-    max-width: 350px;     /* Не больше 350 пикселей */
-    height: auto;         /* Высота подстраивается автоматически */
-    display: block;
-    margin: 0 auto;       /* Центрирование */
-    
-    /* Отступ сверху, чтобы не прилипало к краю */
-    margin-top: 20px;     
-    margin-bottom: 10px;
-    
-    /* Красивая тень под логотипом для объема */
-    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
-    
-    /* Анимация появления (по желанию) */
-    animation: popIn 0.5s ease-out;
-}
 
-/* Анимация, чтобы логотип красиво "выпрыгивал" при запуске */
 @keyframes popIn {
-    0% { transform: scale(0.5); opacity: 0; }
-    80% { transform: scale(1.1); opacity: 1; }
-    100% { transform: scale(1); }
+    0% { transform: scale(0.5) translateY(-50px); opacity: 0; }
+    70% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
 }
 
-/* Ключи для анимации дыхания */
 @keyframes idleBreath {
-    0% {
-        transform: scale(1) translateY(0);
-    }
-    50% {
-        /* В середине цикла он чуть увеличивается (вдох) и всплывает вверх */
-        transform: scale(1.02) translateY(-8px);
-    }
-    100% {
-        transform: scale(1) translateY(0);
-    }
+    0% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.02) translateY(-8px); }
+    100% { transform: scale(1) translateY(0); }
 }
-

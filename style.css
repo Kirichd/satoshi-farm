@@ -85,3 +85,28 @@ body {
     0% { transform: translateY(0); opacity: 1; }
     100% { transform: translateY(-100px); opacity: 0; }
 }
+/* Настройки для картинки логотипа */
+.logo-img {
+    width: 85%;           /* Занимает 85% ширины "телефона" */
+    max-width: 350px;     /* Не больше 350 пикселей */
+    height: auto;         /* Высота подстраивается автоматически */
+    display: block;
+    margin: 0 auto;       /* Центрирование */
+    
+    /* Отступ сверху, чтобы не прилипало к краю */
+    margin-top: 20px;     
+    margin-bottom: 10px;
+    
+    /* Красивая тень под логотипом для объема */
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+    
+    /* Анимация появления (по желанию) */
+    animation: popIn 0.5s ease-out;
+}
+
+/* Анимация, чтобы логотип красиво "выпрыгивал" при запуске */
+@keyframes popIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    80% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
+}

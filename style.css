@@ -30,13 +30,16 @@ body {
 }
 
 .logo-img {
-    /* Делаем логотип компактным */
-    width: 60%;         /* Занимает 60% ширины вместо 85% */
-    max-width: 220px;   /* Максимум 220 пикселей */
+    width: 60%;
+    max-width: 220px;
     height: auto;
     display: block;
     margin: 0 auto;
     filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+    
+    /* Добавляем анимацию появления */
+    animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+    opacity: 0; /* Сначала логотип невидимый */
 }
 
 /* Статистика */
@@ -122,4 +125,10 @@ body {
 @keyframes moveUp {
     0% { transform: translateY(0); opacity: 1; }
     100% { transform: translateY(-100px); opacity: 0; }
+}
+/* Эффект пружины для логотипа */
+@keyframes popIn {
+    0% { transform: scale(0.5) translateY(-50px); opacity: 0; }
+    70% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
 }

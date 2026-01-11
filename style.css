@@ -23,9 +23,8 @@ body {
     overflow: hidden;
 }
 
-/* --- ИЗМЕНЕНИЕ 1: ПОДНИМАЕМ ЛОГОТИП ВЫШЕ --- */
 .header {
-    padding-top: 20px; /* БЫЛО 40px. Сделали меньше, чтобы всё уехало вверх */
+    padding-top: 20px;
     flex-shrink: 0;
 }
 
@@ -43,9 +42,10 @@ body {
 .stats-container {
     display: flex;
     justify-content: space-around;
-    padding: 5px 10px; /* Чуть уменьшили отступ между лого и статами */
+    padding: 5px 10px;
     flex-shrink: 0;
 }
+
 .stat-card {
     background: rgba(0, 0, 0, 0.6);
     border: 1px solid #444;
@@ -54,28 +54,42 @@ body {
     width: 40%;
     text-align: center;
 }
-.label { font-size: 10px; color: #aaa; text-transform: uppercase; display: block; }
-.value { font-size: 16px; font-weight: bold; }
+
+/* --- ИЗМЕНЕНИЕ: СЛОВА СВЕРХУ (ВКЛАД / ДОХОД) --- */
+.label { 
+    font-family: 'Russo One', sans-serif; /* Новый жирный шрифт */
+    font-size: 12px;      /* Чуть крупнее */
+    color: #ccc;          /* Светло-серый цвет */
+    text-transform: uppercase; 
+    display: block; 
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 0 #000; /* Черная тень для четкости */
+}
+
+/* --- ЦИФРЫ ОСТАВЛЯЕМ КАК БЫЛИ --- */
+.value { 
+    font-family: 'Titan One', cursive; 
+    font-size: 20px; 
+    font-weight: normal; 
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+}
+
 .green { color: #00ffcc; }
 .gold { color: #ffd700; }
 
-/* --- ИЗМЕНЕНИЕ 2: ПОДНИМАЕМ ДЕДУШКУ --- */
 .character-section {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    
-    /* Самое важное: отступ снизу 100px. 
-       Это заставит дедушку стоять ВЫШЕ меню, а не за ним. */
     padding-bottom: 110px; 
-    
     overflow: hidden;
 }
 
 #hero {
     width: auto;
-    height: 90%; /* Дед стал чуть крупнее */
+    height: 90%;
     max-height: 50vh;
     object-fit: contain;
     filter: drop-shadow(0 0 20px rgba(0,0,0,0.6));
@@ -89,7 +103,6 @@ body {
     transform: scale(0.95) !important;
 }
 
-/* --- ИЗМЕНЕНИЕ 3: УВЕЛИЧИВАЕМ МЕНЮ --- */
 .bottom-menu {
     display: flex;
     justify-content: space-around;
@@ -103,7 +116,7 @@ body {
     transform: translateX(-50%);
     
     width: 92%;
-    padding: 15px 0; /* Чуть больше "воздуха" внутри меню */
+    padding: 15px 0;
     
     border-radius: 25px;
     border: 1px solid #ffd700;
@@ -119,20 +132,21 @@ body {
     opacity: 0.6;
 }
 
-/* Увеличиваем иконки */
 .menu-item img { 
-    width: 36px;  /* Было 28px -> Стало 36px (крупнее) */
+    width: 36px;
     height: 36px;
     margin-bottom: 6px; 
     object-fit: contain; 
 }
 
-/* Увеличиваем текст */
+/* --- ИЗМЕНЕНИЕ: СЛОВА ВНИЗУ (МЕНЮ) --- */
 .menu-item span { 
-    font-size: 11px; /* Было 9px -> Стало 11px (читабельнее) */
+    font-family: 'Russo One', sans-serif; /* Новый жирный шрифт */
+    font-size: 11px; 
     color: white; 
     text-transform: uppercase; 
-    font-weight: bold; 
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 0 #000; /* Четкая обводка */
 }
 
 .menu-item.active { opacity: 1; }
@@ -140,13 +154,13 @@ body {
 
 .tap-animation {
     position: fixed;
+    font-family: 'Titan One', cursive; 
     color: #ffd700;
-    font-weight: bold;
-    font-size: 24px;
+    font-size: 28px;
     pointer-events: none;
     animation: moveUp 1s ease-out forwards;
     z-index: 1000;
-    text-shadow: 0 0 10px rgba(0,0,0,1);
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 @keyframes moveUp {

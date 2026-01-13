@@ -5,21 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Satoshi Farm</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=FINAL_IOS_FIX">
+    <link rel="stylesheet" href="style.css?v=IOS_REPAINT_FIX">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <style>
-        /* Отключаем глючное размытие на кнопках, чтобы текст не пропадал */
         .menu-item {
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
-            background: rgba(18, 18, 30, 0.98) !important; /* Делаем фон чуть плотнее */
-            transform: translateZ(0); /* Включаем аппаратное ускорение */
+            background: rgba(18, 18, 30, 0.98) !important; 
+            transform: translateZ(0); 
         }
-        /* Гарантируем видимость текста */
         .menu-item span {
             z-index: 10;
             position: relative;
+        }
+        /* Скрываем картинки до момента "пинка", чтобы не было мигания пустоты */
+        .menu-item img {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .menu-item img.loaded {
+            opacity: 1;
         }
     </style>
 </head>
@@ -47,22 +53,22 @@
 
         <div class="bottom-menu">
             <div class="menu-item" onclick="selectTab(this)">
-                <img id="img-info" src="./btn_info.jpg" width="38" height="38" alt="Info">
+                <img id="img-info" src="./info_new.jpg" width="38" height="38" alt="Info">
                 <span>INFO</span>
             </div>
 
             <div class="menu-item" onclick="selectTab(this)">
-                <img id="img-task" src="./btn_task.jpg" width="38" height="38" alt="Task">
+                <img id="img-task" src="./task_new.jpg" width="38" height="38" alt="Task">
                 <span>TASK</span>
             </div>
 
             <div class="menu-item active" onclick="selectTab(this)">
-                <img id="img-earn" src="./btn_earn.jpg" width="38" height="38" alt="Earn">
+                <img id="img-earn" src="./earn_new.jpg" width="38" height="38" alt="Earn">
                 <span>EARN</span>
             </div>
 
             <div class="menu-item" onclick="selectTab(this)">
-                <img id="img-user" src="./btn_user.jpg" width="38" height="38" alt="User">
+                <img id="img-user" src="./user_new.jpg" width="38" height="38" alt="User">
                 <span>USER</span>
             </div>
         </div>
@@ -71,27 +77,34 @@
     <script src="script.js"></script>
     
     <script>
-        // Этот код срабатывает сразу при запуске
         window.addEventListener('load', function() {
-            // Создаем уникальную метку времени (сейчас)
-            var now = new Date().getTime();
+            var now = new Date().getTime(); // Уникальная метка времени
 
-            // Функция обновления одной картинки
-            function refreshImage(id, filename) {
+            function kickStartImage(id, filename) {
                 var img = document.getElementById(id);
                 if (img) {
-                    // Добавляем ?t=... чтобы телефон подумал, что это НОВАЯ картинка
-                    img.src = filename + "?t=" + now;
+                    // Заставляем браузер перекачать картинку, добавляя ?t=время
+                    var newSrc = filename + "?t=" + now;
+                    img.src = newSrc;
+                    
+                    // Плавно показываем картинку, когда она загрузится
+                    img.onload = function() {
+                        img.classList.add('loaded');
+                    };
+                    // Если она уже была в кэше, событие может не сработать, поэтому проверяем:
+                    if (img.complete) {
+                        img.classList.add('loaded');
+                    }
                 }
             }
 
-            // Обновляем все 4 иконки принудительно
+            // Запускаем через 50мс после старта
             setTimeout(function() {
-                refreshImage('img-info', './btn_info.jpg');
-                refreshImage('img-task', './btn_task.jpg');
-                refreshImage('img-earn', './btn_earn.jpg');
-                refreshImage('img-user', './btn_user.jpg');
-            }, 50); // Делаем это через 0.05 сек после старта
+                kickStartImage('img-info', './info_new.jpg');
+                kickStartImage('img-task', './task_new.jpg');
+                kickStartImage('img-earn', './earn_new.jpg');
+                kickStartImage('img-user', './user_new.jpg');
+            }, 50);
         });
     </script>
 </body>

@@ -98,17 +98,17 @@ body {
 }
 .hero-img:active { transform: translateX(-50%) scale(0.97); }
 
-/* --- НИЖНЕЕ МЕНЮ (КОМПАКТНОЕ) --- */
+/* --- НИЖНЕЕ МЕНЮ (УМЕНЬШЕНО ДЛЯ ВМЕСТИМОСТИ) --- */
 .bottom-menu {
     position: absolute;
     bottom: 15px; 
     left: 50%;
     transform: translateX(-50%);
     width: 96%;
-    height: 70px; 
+    height: 65px; /* Высота уменьшена */
     display: flex;
     justify-content: space-between; 
-    gap: 6px; 
+    gap: 4px; /* Узкий зазор между кнопками */
     z-index: 1000;
 }
 
@@ -116,49 +116,56 @@ body {
     flex: 1; 
     background: rgba(18, 18, 30, 0.95); 
     border: 1px solid rgba(255, 255, 255, 0.15); 
-    border-radius: 20px; 
+    border-radius: 18px; 
     display: flex;
     flex-direction: row; 
     align-items: center;
     justify-content: center;
-    padding: 0 3px; 
+    padding: 0 4px; 
     backdrop-filter: blur(12px); 
     transition: all 0.2s ease;
     cursor: pointer;
     height: 100%; 
 }
 
-/* Общий стиль иконок */
+/* ИКОНКИ (Размер 38px для экономии места) */
 .menu-item img {
-    width: 48px;  
-    height: 48px;
+    width: 38px;  
+    height: 38px;
     object-fit: contain; 
     display: block;
     margin-left: -2px;
-    margin-right: -6px; /* Подтягивает текст к логотипам */
+    margin-right: -4px; /* Плотное прилегание текста */
     margin-bottom: 0;
     filter: drop-shadow(0 0 3px rgba(0,0,0,0.6));
     image-rendering: -webkit-optimize-contrast;
 }
 
-/* СПЕЦИАЛЬНОЕ ВЫРАВНИВАНИЕ ДЛЯ USER (ЧЕЛОВЕЧЕК) */
+/* ВЫРАВНИВАНИЕ USER (ЧЕЛОВЕЧЕК) */
 .menu-item:nth-child(4) img {
-    transform: translateY(-5px); /* Приподнимает иконку USER для выравнивания */
+    transform: translateY(-3px); /* Чуть выше, чтобы плечи были на уровне кругов */
 }
 
+/* НАДПИСИ (Размер 13px) */
 .menu-item span {
     display: block; 
     color: #ffffff;
-    font-size: 16px; 
+    font-size: 13px; 
     font-weight: 900; 
     text-transform: uppercase;
-    letter-spacing: 0.1px; 
+    letter-spacing: 0px; 
     line-height: 1;
     position: relative;
     z-index: 2;
 }
 
-.menu-item:active { transform: scale(0.94); }
+.menu-item.active {
+    background: linear-gradient(180deg, rgba(0, 210, 255, 0.2) 0%, rgba(18, 18, 30, 0.98) 100%);
+    border: 2px solid #00d2ff; 
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.4); 
+}
+.menu-item.active span { color: #00d2ff; }
+.menu-item:active { transform: scale(0.96); }
 
 /* --- АНИМАЦИИ --- */
 .floating-text {

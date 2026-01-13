@@ -162,74 +162,77 @@ body {
     transform: translateX(-50%) scale(0.97); 
 }
 
-/* --- НОВОЕ НИЖНЕЕ МЕНЮ (ГИГАНТСКИЕ РАЗДЕЛЬНЫЕ КНОПКИ КАК НА РЕФЕРЕНСЕ №2) --- */
+/* --- НИЖНЕЕ МЕНЮ (ТОЛЬКО КРУПНЫЕ ИКОНКИ) --- */
 .bottom-menu {
     position: absolute;
-    bottom: 30px; 
+    bottom: 20px; /* Отступ от низа экрана */
     left: 50%;
     transform: translateX(-50%);
     
-    width: 96%; /* На всю ширину */
-    /* Высоту не задаем, она будет зависеть от кнопок */
+    width: 92%; /* Ширина контейнера (отступы по бокам) */
+    height: 75px; /* Высота кнопок */
     
     display: flex;
-    justify-content: space-between; /* Растягиваем кнопки по ширине */
-    gap: 8px; /* Расстояние между кнопками */
+    justify-content: space-between; /* Равномерное распределение */
+    gap: 10px; /* Расстояние между кнопками */
     
-    background: none; /* Убираем общий фон контейнера */
+    background: none; 
     border: none;
     box-shadow: none;
     z-index: 1000;
 }
 
 .menu-item {
-    /* Каждая кнопка — отдельная "пилюля" */
-    flex: 1; /* Все кнопки одинаковой ширины */
-    background: #1a1a2e; /* Темный фон кнопки */
-    border: 2px solid rgba(255, 255, 255, 0.15); /* Тонкая рамка */
-    border-radius: 50px; /* Полностью круглые бока (форма пилюли) */
-    
-    padding: 12px 5px; /* Большие внутренние отступы */
+    /* Форма кнопки - скругленный квадрат */
+    flex: 1; /* Растягиваем кнопки равномерно */
+    background: rgba(18, 18, 30, 0.9); /* Темный полупрозрачный фон */
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Тонкая рамка */
+    border-radius: 20px; /* Скругление углов (не круг, а мягкий квадрат) */
     
     display: flex;
-    flex-direction: row; /* Иконка СЛЕВА, текст СПРАВА */
     align-items: center;
     justify-content: center;
     
-    opacity: 0.7;
-    transition: all 0.3s ease;
+    backdrop-filter: blur(10px); /* Размытие фона под кнопкой */
+    transition: all 0.2s ease;
+    cursor: pointer;
 }
 
-.menu-item img {
-    /* Крупная иконка слева */
-    width: 32px;
-    height: 32px;
-    margin-right: 8px; /* Отступ до текста */
-    margin-bottom: 0; /* Убираем отступ снизу */
-    object-fit: contain;
-}
-
+/* СКРЫВАЕМ ТЕКСТ ПОЛНОСТЬЮ */
 .menu-item span {
-    /* Крупный, жирный текст справа */
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    display: none;
 }
 
-/* --- Стили для АКТИВНОЙ вкладки (EARN) как на референсе №2 --- */
+/* НАСТРОЙКА ИКОНКИ */
+.menu-item img {
+    width: 38px;  /* Размер иконки (достаточно крупный для кнопки без текста) */
+    height: 38px;
+    object-fit: contain;
+    
+    /* Убираем все отступы, так как текста нет */
+    margin: 0; 
+    
+    /* Делаем иконку чуть ярче */
+    filter: drop-shadow(0 0 2px rgba(255,255,255,0.3));
+}
+
+/* --- АКТИВНАЯ КНОПКА (EARN) --- */
 .menu-item.active {
-    opacity: 1;
-    background: linear-gradient(180deg, rgba(0,210,255,0.15) 0%, #1a1a2e 100%); /* Синий градиент */
-    border: 2px solid #00d2ff; /* Яркая синяя рамка */
-    box-shadow: 0 0 25px rgba(0, 210, 255, 0.6); /* Мощное синее свечение */
-    transform: scale(1.02);
+    background: linear-gradient(180deg, rgba(0, 210, 255, 0.2) 0%, rgba(18, 18, 30, 0.95) 100%);
+    border: 1.5px solid #00d2ff; /* Яркая синяя рамка */
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.4); /* Синее свечение вокруг кнопки */
+    transform: translateY(-2px); /* Чуть приподнимаем активную кнопку */
+}
+
+/* Иконка внутри активной кнопки светится сильнее */
+.menu-item.active img {
+    filter: drop-shadow(0 0 8px #00d2ff);
+    transform: scale(1.1); /* Иконка чуть увеличивается */
 }
 
 /* Эффект нажатия */
 .menu-item:active {
-    transform: scale(0.95);
+    transform: scale(0.92);
 }
 /* --- АНИМАЦИИ --- */
 .floating-text {
@@ -246,4 +249,5 @@ body {
 @keyframes floatUp {
     0% { transform: translateY(0); opacity: 1; }
     100% { transform: translateY(-100px); opacity: 0; }
+
 }

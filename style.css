@@ -54,6 +54,30 @@ body {
     to { background-position-x: -200%; } 
 }
 
+/* --- НОВОЕ: СВЕЧЕНИЕ СОЛНЕЧНЫХ ПАНЕЛЕЙ СЛЕВА --- */
+.solar-glow-layer {
+    position: absolute;
+    /* Примерное расположение панелей на фоне. 
+       Возможно, придется чуть подправить top/left/width/height под твой bg.jpg */
+    top: 25%; 
+    left: -5%;
+    width: 35%;
+    height: 40%;
+    /* Синее радиальное свечение */
+    background: radial-gradient(ellipse at center, rgba(0, 210, 255, 0.3) 0%, rgba(0,0,0,0) 70%);
+    pointer-events: none;
+    z-index: 5; /* Поверх фона, но под героем */
+    opacity: 0;
+    animation: solarPulse 4s ease-in-out infinite;
+    transform: rotate(-10deg); /* Небольшой наклон для соответствия перспективе */
+}
+
+@keyframes solarPulse {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.5; } /* Максимальная яркость свечения */
+}
+
+
 /* --- ВЕРХНИЕ ПЛАШКИ --- */
 .top-stats {
     display: grid;
@@ -82,33 +106,49 @@ body {
 .stat-sub { font-size: 10px; color: #8f9bb3; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
 .stat-btn { width: 100%; background: rgba(255, 255, 255, 0.08); border: none; border-top: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 0; color: #ccc; font-size: 12px; cursor: pointer; }
 
-/* --- ГЕРОЙ --- */
+/* --- ГЕРОЙ (ОБНОВЛЕНО С АНИМАЦИЕЙ) --- */
 .hero-section { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; pointer-events: none; }
 .hero-img {
     position: absolute;
     bottom: -50px; 
     left: 50%;
-    transform: translateX(-50%);
+    /* ВАЖНО: translateX(-50%) перенесено в анимацию */
+    transform: translateX(-50%); 
     height: 75vh; 
     width: auto;
     filter: drop-shadow(0 0 30px rgba(0,0,0,0.6));
     pointer-events: auto; 
     cursor: pointer;
     transition: transform 0.08s;
+    /* НОВОЕ: Добавлена анимация покачивания */
+    animation: characterFloat 3.5s ease-in-out infinite;
 }
-.hero-img:active { transform: translateX(-50%) scale(0.97); }
+/* При клике анимация на секунду прерывается для эффекта нажатия */
+.hero-img:active { transform: translateX(-50%) scale(0.97); animation: none; }
 
-/* --- НИЖНЕЕ МЕНЮ (УМЕНЬШЕНО ДЛЯ ВМЕСТИМОСТИ) --- */
+/* НОВОЕ: Анимация покачивания персонажа */
+@keyframes characterFloat {
+    0%, 100% {
+        /* Обязательно сохраняем центрирование по X */
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        /* Плавное движение вверх на 15px */
+        transform: translateX(-50%) translateY(-15px);
+    }
+}
+
+/* --- НИЖНЕЕ МЕНЮ (КОМПАКТНОЕ) --- */
 .bottom-menu {
     position: absolute;
     bottom: 15px; 
     left: 50%;
     transform: translateX(-50%);
     width: 96%;
-    height: 65px; /* Высота уменьшена */
+    height: 65px; 
     display: flex;
     justify-content: space-between; 
-    gap: 4px; /* Узкий зазор между кнопками */
+    gap: 4px; 
     z-index: 1000;
 }
 
@@ -128,25 +168,20 @@ body {
     height: 100%; 
 }
 
-/* ИКОНКИ (Размер 38px для экономии места) */
 .menu-item img {
     width: 38px;  
     height: 38px;
     object-fit: contain; 
     display: block;
     margin-left: -2px;
-    margin-right: -4px; /* Плотное прилегание текста */
+    margin-right: -4px; 
     margin-bottom: 0;
     filter: drop-shadow(0 0 3px rgba(0,0,0,0.6));
     image-rendering: -webkit-optimize-contrast;
 }
 
-/* ВЫРАВНИВАНИЕ USER (ЧЕЛОВЕЧЕК) */
-.menu-item:nth-child(4) img {
-    transform: translateY(-3px); /* Чуть выше, чтобы плечи были на уровне кругов */
-}
+.menu-item:nth-child(4) img { transform: translateY(-3px); }
 
-/* НАДПИСИ (Размер 13px) */
 .menu-item span {
     display: block; 
     color: #ffffff;

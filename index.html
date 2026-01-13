@@ -5,23 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Satoshi Farm</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=TEST_MIX_1">
+    <link rel="stylesheet" href="style.css?v=PRELOAD_FIX">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <link rel="preload" as="image" href="./info_new.jpg?v=final">
+    <link rel="preload" as="image" href="./task_new.jpg?v=final">
+    <link rel="preload" as="image" href="./earn_new.jpg?v=final">
+    <link rel="preload" as="image" href="./user_new.jpg?v=final">
+    <link rel="preload" as="image" href="./ton.png">
 </head>
 <body>
     <div class="phone-container">
+        
         <div class="clouds-layer"><div class="layer-back"></div><div class="layer-front"></div></div>
         <div class="solar-glow-layer"></div>
 
         <div class="top-stats header"> 
             <div class="stat-card">
-                <div class="stat-top"><div class="icon-circle">▼</div><span class="stat-value">0.028</span></div>
-                <div class="stat-sub"><img src="ton.png" class="ton-icon" alt="TON">TON</div>
+                <div class="stat-top">
+                    <div class="icon-circle">▼</div>
+                    <span class="stat-value">0.028</span>
+                </div>
+                <div class="stat-sub">
+                    <img src="ton.png" class="ton-icon" alt="TON">
+                    TON
+                </div>
                 <button class="stat-btn">↑ Вклад</button>
             </div>
             <div class="stat-card">
-                <div class="stat-top"><div class="icon-circle">▼</div><span class="stat-value" id="score">3,887,500</span></div>
-                <div class="stat-sub"><img src="ton.png" class="ton-icon" alt="TON">TON</div>
+                <div class="stat-top">
+                    <div class="icon-circle">▼</div>
+                    <span class="stat-value" id="score">3,887,500</span>
+                </div>
+                <div class="stat-sub">
+                    <img src="ton.png" class="ton-icon" alt="TON">
+                    TON
+                </div>
                 <button class="stat-btn">↑ Доход</button>
             </div>
         </div>
@@ -31,27 +50,27 @@
         </div>
 
         <div class="bottom-menu">
-            
             <div class="menu-item" onclick="selectTab(this)">
-                <img src="ton.png?v=test" alt="Info">
-                <span>INFO (TON)</span>
+                <img src="./info_new.jpg?v=final" width="38" height="38" alt="Info">
+                <span>INFO</span>
             </div>
 
             <div class="menu-item" onclick="selectTab(this)">
-                <img src="https://placehold.co/100x100/green/white?text=T" alt="Task">
-                <span>TASK (WEB)</span>
+                <img src="./task_new.jpg?v=final" width="38" height="38" alt="Task">
+                <span>TASK</span>
             </div>
 
             <div class="menu-item active" onclick="selectTab(this)">
-                <img src="earn_new.jpg?v=test" alt="Earn">
-                <span>EARN (YOURS)</span>
+                <img src="./earn_new.jpg?v=final" width="38" height="38" alt="Earn">
+                <span>EARN</span>
             </div>
 
             <div class="menu-item" onclick="selectTab(this)">
-                <img src="user_new.jpg?v=test" alt="User">
-                <span>USER (YOURS)</span>
+                <img src="./user_new.jpg?v=final" width="38" height="38" alt="User">
+                <span>USER</span>
             </div>
         </div>
+
     </div>
     <script src="script.js"></script>
 </body>

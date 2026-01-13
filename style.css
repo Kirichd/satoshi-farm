@@ -92,17 +92,17 @@ body {
 }
 .hero-img:active { transform: translateX(-50%) scale(0.97); }
 
-/* --- НИЖНЕЕ МЕНЮ (НАДПИСИ СБОКУ + ОГРОМНЫЕ ИКОНКИ) --- */
+/* --- НИЖНЕЕ МЕНЮ (ГОРИЗОНТАЛЬНОЕ + ГИГАНТСКИЕ ИКОНКИ) --- */
 .bottom-menu {
     position: absolute;
     bottom: 20px; 
     left: 50%;
     transform: translateX(-50%);
     width: 96%;
-    height: 85px; /* Высота увеличена для больших иконок */
+    height: 90px; /* Высота под большие иконки */
     display: flex;
     justify-content: space-between; 
-    gap: 6px; 
+    gap: 8px; 
     z-index: 1000;
 }
 
@@ -112,33 +112,34 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.15); 
     border-radius: 20px; 
     display: flex;
-    flex-direction: row; /* Иконка слева, текст справа */
+    flex-direction: row; /* Текст сбоку */
     align-items: center;
     justify-content: center;
-    padding: 0 8px; 
+    padding: 0 5px; 
     backdrop-filter: blur(10px); 
     transition: transform 0.2s ease;
     cursor: pointer;
 }
 
-/* --- УВЕЛИЧЕННЫЕ ИКОНКИ --- */
 .menu-item img {
-    width: 50px;  /* Максимальный размер */
-    height: 50px;
+    /* ПРИНУДИТЕЛЬНЫЙ РАЗМЕР ИКОНКИ */
+    width: 50px !important;  
+    height: 50px !important;
+    min-width: 50px;
     object-fit: contain;
-    margin-right: 6px; /* Отступ до текста */
+    margin-right: 5px; 
     filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
-    image-rendering: -webkit-optimize-contrast;
 }
 
 .menu-item span {
     color: #ffffff;
-    font-size: 13px; /* Четкий шрифт */
+    font-size: 12px;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
+/* Активная кнопка */
 .menu-item.active {
     background: linear-gradient(180deg, rgba(0, 210, 255, 0.2) 0%, rgba(18, 18, 30, 0.95) 100%);
     border: 2px solid #00d2ff; 
@@ -146,6 +147,9 @@ body {
 }
 .menu-item.active span { color: #00d2ff; }
 .menu-item.active img { filter: drop-shadow(0 0 10px #00d2ff); }
+
+/* Эффект нажатия */
+.menu-item:active { transform: scale(0.95); }
 
 /* --- АНИМАЦИИ --- */
 .floating-text {

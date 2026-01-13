@@ -99,7 +99,28 @@ body {
 .stat-top { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
 .icon-circle { width: 18px; height: 18px; border: 1px solid #777; border-radius: 50%; font-size: 8px; display: flex; align-items: center; justify-content: center; color: #ccc; }
 .stat-value { color: #fff; font-size: 18px; font-weight: 700; }
-.stat-sub { font-size: 10px; color: #8f9bb3; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
+
+/* ОБНОВЛЕНО: Добавлен флекс для выравнивания иконки и текста */
+.stat-sub { 
+    font-size: 10px; 
+    color: #8f9bb3; 
+    text-transform: uppercase; 
+    margin-bottom: 8px; 
+    letter-spacing: 0.5px;
+    /* Новые свойства для выравнивания: */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* НОВОЕ: Класс для иконки TON */
+.ton-icon {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px; /* Отступ между иконкой и текстом */
+    display: inline-block;
+}
+
 .stat-btn { width: 100%; background: rgba(255, 255, 255, 0.08); border: none; border-top: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 0; color: #ccc; font-size: 12px; cursor: pointer; }
 
 /* --- ГЕРОЙ --- */

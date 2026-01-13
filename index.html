@@ -6,12 +6,6 @@
     <title>Satoshi Farm</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     
-    <link rel="preload" as="image" href="info.png?v=777">
-    <link rel="preload" as="image" href="task.png?v=777">
-    <link rel="preload" as="image" href="earn.png?v=777">
-    <link rel="preload" as="image" href="user.png?v=777">
-    <link rel="preload" as="image" href="ton.png?v=777">
-
     <link rel="stylesheet" href="style.css?v=115">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
@@ -28,7 +22,7 @@
                     <span class="stat-value">0.028</span>
                 </div>
                 <div class="stat-sub">
-                    <img src="ton.png?v=777" class="ton-icon" loading="eager" alt="TON">
+                    <img src="https://kirichd.github.io/satoshi-farm/ton.png" class="ton-icon" alt="TON">
                     TON
                 </div>
                 <button class="stat-btn">↑ Вклад</button>
@@ -39,7 +33,7 @@
                     <span class="stat-value" id="score">3,887,500</span>
                 </div>
                 <div class="stat-sub">
-                    <img src="ton.png?v=777" class="ton-icon" loading="eager" alt="TON">
+                    <img src="https://kirichd.github.io/satoshi-farm/ton.png" class="ton-icon" alt="TON">
                     TON
                 </div>
                 <button class="stat-btn">↑ Доход</button>
@@ -47,42 +41,41 @@
         </div>
 
         <div class="character-section hero-section">
-            <img src="character.png?v=115" id="hero" class="hero-img" loading="eager" onclick="handleTap(event)" alt="Hero">
+            <img src="https://kirichd.github.io/satoshi-farm/character.png" id="hero" class="hero-img" onclick="handleTap(event)" alt="Hero">
         </div>
 
         <div class="bottom-menu">
             <div class="menu-item">
-                <img src="info.png?v=777" width="38" height="38" loading="eager" alt="Info">
+                <img src="https://kirichd.github.io/satoshi-farm/info.png" 
+                     width="38" height="38" 
+                     onerror="this.onerror=null; this.src='https://kirichd.github.io/satoshi-farm/info.png?t='+new Date().getTime()"
+                     alt="Info">
                 <span>INFO</span>
             </div>
             <div class="menu-item">
-                <img src="task.png?v=777" width="38" height="38" loading="eager" alt="Task">
+                <img src="https://kirichd.github.io/satoshi-farm/task.png" 
+                     width="38" height="38" 
+                     onerror="this.onerror=null; this.src='https://kirichd.github.io/satoshi-farm/task.png?t='+new Date().getTime()"
+                     alt="Task">
                 <span>TASK</span>
             </div>
             <div class="menu-item">
-                <img src="earn.png?v=777" width="38" height="38" loading="eager" alt="Earn">
+                <img src="https://kirichd.github.io/satoshi-farm/earn.png" 
+                     width="38" height="38" 
+                     onerror="this.onerror=null; this.src='https://kirichd.github.io/satoshi-farm/earn.png?t='+new Date().getTime()"
+                     alt="Earn">
                 <span>EARN</span>
             </div>
             <div class="menu-item">
-                <img src="user.png?v=777" width="38" height="38" loading="eager" alt="User">
+                <img src="https://kirichd.github.io/satoshi-farm/user.png" 
+                     width="38" height="38" 
+                     onerror="this.onerror=null; this.src='https://kirichd.github.io/satoshi-farm/user.png?t='+new Date().getTime()"
+                     alt="User">
                 <span>USER</span>
             </div>
         </div>
 
     </div>
     <script src="script.js"></script>
-    
-    <script>
-        window.onload = function() {
-            setTimeout(() => {
-                const images = document.querySelectorAll('img');
-                images.forEach(img => {
-                    const src = img.src;
-                    img.src = '';
-                    img.src = src;
-                });
-            }, 100);
-        }
-    </script>
 </body>
 </html>

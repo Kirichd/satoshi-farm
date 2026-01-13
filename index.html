@@ -5,42 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Satoshi Farm</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=PRELOAD_FIX">
+    <link rel="stylesheet" href="style.css?v=FINAL_IOS_FIX">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-    <link rel="preload" as="image" href="./info_new.jpg?v=final">
-    <link rel="preload" as="image" href="./task_new.jpg?v=final">
-    <link rel="preload" as="image" href="./earn_new.jpg?v=final">
-    <link rel="preload" as="image" href="./user_new.jpg?v=final">
-    <link rel="preload" as="image" href="./ton.png">
+    <style>
+        /* Отключаем глючное размытие на кнопках, чтобы текст не пропадал */
+        .menu-item {
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            background: rgba(18, 18, 30, 0.98) !important; /* Делаем фон чуть плотнее */
+            transform: translateZ(0); /* Включаем аппаратное ускорение */
+        }
+        /* Гарантируем видимость текста */
+        .menu-item span {
+            z-index: 10;
+            position: relative;
+        }
+    </style>
 </head>
 <body>
     <div class="phone-container">
-        
         <div class="clouds-layer"><div class="layer-back"></div><div class="layer-front"></div></div>
         <div class="solar-glow-layer"></div>
 
         <div class="top-stats header"> 
             <div class="stat-card">
-                <div class="stat-top">
-                    <div class="icon-circle">▼</div>
-                    <span class="stat-value">0.028</span>
-                </div>
-                <div class="stat-sub">
-                    <img src="ton.png" class="ton-icon" alt="TON">
-                    TON
-                </div>
+                <div class="stat-top"><div class="icon-circle">▼</div><span class="stat-value">0.028</span></div>
+                <div class="stat-sub"><img src="ton.png" class="ton-icon" alt="TON">TON</div>
                 <button class="stat-btn">↑ Вклад</button>
             </div>
             <div class="stat-card">
-                <div class="stat-top">
-                    <div class="icon-circle">▼</div>
-                    <span class="stat-value" id="score">3,887,500</span>
-                </div>
-                <div class="stat-sub">
-                    <img src="ton.png" class="ton-icon" alt="TON">
-                    TON
-                </div>
+                <div class="stat-top"><div class="icon-circle">▼</div><span class="stat-value" id="score">3,887,500</span></div>
+                <div class="stat-sub"><img src="ton.png" class="ton-icon" alt="TON">TON</div>
                 <button class="stat-btn">↑ Доход</button>
             </div>
         </div>
@@ -51,27 +47,52 @@
 
         <div class="bottom-menu">
             <div class="menu-item" onclick="selectTab(this)">
-                <img src="./info_new.jpg?v=final" width="38" height="38" alt="Info">
+                <img id="img-info" src="./btn_info.jpg" width="38" height="38" alt="Info">
                 <span>INFO</span>
             </div>
 
             <div class="menu-item" onclick="selectTab(this)">
-                <img src="./task_new.jpg?v=final" width="38" height="38" alt="Task">
+                <img id="img-task" src="./btn_task.jpg" width="38" height="38" alt="Task">
                 <span>TASK</span>
             </div>
 
             <div class="menu-item active" onclick="selectTab(this)">
-                <img src="./earn_new.jpg?v=final" width="38" height="38" alt="Earn">
+                <img id="img-earn" src="./btn_earn.jpg" width="38" height="38" alt="Earn">
                 <span>EARN</span>
             </div>
 
             <div class="menu-item" onclick="selectTab(this)">
-                <img src="./user_new.jpg?v=final" width="38" height="38" alt="User">
+                <img id="img-user" src="./btn_user.jpg" width="38" height="38" alt="User">
                 <span>USER</span>
             </div>
         </div>
-
     </div>
+    
     <script src="script.js"></script>
+    
+    <script>
+        // Этот код срабатывает сразу при запуске
+        window.addEventListener('load', function() {
+            // Создаем уникальную метку времени (сейчас)
+            var now = new Date().getTime();
+
+            // Функция обновления одной картинки
+            function refreshImage(id, filename) {
+                var img = document.getElementById(id);
+                if (img) {
+                    // Добавляем ?t=... чтобы телефон подумал, что это НОВАЯ картинка
+                    img.src = filename + "?t=" + now;
+                }
+            }
+
+            // Обновляем все 4 иконки принудительно
+            setTimeout(function() {
+                refreshImage('img-info', './btn_info.jpg');
+                refreshImage('img-task', './btn_task.jpg');
+                refreshImage('img-earn', './btn_earn.jpg');
+                refreshImage('img-user', './btn_user.jpg');
+            }, 50); // Делаем это через 0.05 сек после старта
+        });
+    </script>
 </body>
 </html>

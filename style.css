@@ -1,0 +1,249 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #000;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Основной контейнер */
+.phone-container {
+    width: 100%;
+    max-width: 450px;
+    height: 100%;
+    background-image: url('bg.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden; 
+}
+
+/* --- ОБЛАКА --- */
+.clouds-layer {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 40%; 
+    background-image: url('clouds.png');
+    background-repeat: repeat-x;
+    background-position: top center; 
+    pointer-events: none;
+    z-index: 1; 
+    overflow: hidden; 
+}
+
+.layer-back {
+    opacity: 0.7; 
+    background-size: auto 70%; 
+    animation: moveClouds 90s linear infinite;
+}
+
+.layer-front {
+    opacity: 1; 
+    background-size: auto 90%; 
+    animation: moveClouds 60s linear infinite;
+    transform: scaleX(-1); 
+}
+
+@keyframes moveClouds {
+    from { background-position-x: 0; }
+    to { background-position-x: -200%; } 
+}
+
+
+/* --- ВЕРХНИЕ ПЛАШКИ --- */
+.top-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+    padding: 0 15px; 
+    position: relative;
+    z-index: 20; 
+}
+
+.stat-card {
+    background: rgba(18, 18, 30, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    backdrop-filter: blur(8px);
+}
+
+.stat-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.icon-circle {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #777;
+    border-radius: 50%;
+    font-size: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+}
+
+.stat-value {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.stat-sub {
+    font-size: 10px;
+    color: #8f9bb3;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.stat-btn {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 8px 0;
+    color: #ccc;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* --- ГЕРОЙ --- */
+.hero-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none; 
+}
+
+.hero-img {
+    position: absolute;
+    bottom: -50px; 
+    left: 50%;
+    transform: translateX(-50%);
+    
+    height: 75vh; 
+    width: auto;
+    
+    filter: drop-shadow(0 0 30px rgba(0,0,0,0.6));
+    pointer-events: auto; 
+    cursor: pointer;
+    transition: transform 0.08s;
+}
+
+.hero-img:active {
+    transform: translateX(-50%) scale(0.97); 
+}
+
+/* --- НОВОЕ НИЖНЕЕ МЕНЮ (ГИГАНТСКИЕ РАЗДЕЛЬНЫЕ КНОПКИ КАК НА РЕФЕРЕНСЕ №2) --- */
+.bottom-menu {
+    position: absolute;
+    bottom: 30px; 
+    left: 50%;
+    transform: translateX(-50%);
+    
+    width: 96%; /* На всю ширину */
+    /* Высоту не задаем, она будет зависеть от кнопок */
+    
+    display: flex;
+    justify-content: space-between; /* Растягиваем кнопки по ширине */
+    gap: 8px; /* Расстояние между кнопками */
+    
+    background: none; /* Убираем общий фон контейнера */
+    border: none;
+    box-shadow: none;
+    z-index: 1000;
+}
+
+.menu-item {
+    /* Каждая кнопка — отдельная "пилюля" */
+    flex: 1; /* Все кнопки одинаковой ширины */
+    background: #1a1a2e; /* Темный фон кнопки */
+    border: 2px solid rgba(255, 255, 255, 0.15); /* Тонкая рамка */
+    border-radius: 50px; /* Полностью круглые бока (форма пилюли) */
+    
+    padding: 12px 5px; /* Большие внутренние отступы */
+    
+    display: flex;
+    flex-direction: row; /* Иконка СЛЕВА, текст СПРАВА */
+    align-items: center;
+    justify-content: center;
+    
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.menu-item img {
+    /* Крупная иконка слева */
+    width: 32px;
+    height: 32px;
+    margin-right: 8px; /* Отступ до текста */
+    margin-bottom: 0; /* Убираем отступ снизу */
+    object-fit: contain;
+}
+
+.menu-item span {
+    /* Крупный, жирный текст справа */
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* --- Стили для АКТИВНОЙ вкладки (EARN) как на референсе №2 --- */
+.menu-item.active {
+    opacity: 1;
+    background: linear-gradient(180deg, rgba(0,210,255,0.15) 0%, #1a1a2e 100%); /* Синий градиент */
+    border: 2px solid #00d2ff; /* Яркая синяя рамка */
+    box-shadow: 0 0 25px rgba(0, 210, 255, 0.6); /* Мощное синее свечение */
+    transform: scale(1.02);
+}
+
+/* Эффект нажатия */
+.menu-item:active {
+    transform: scale(0.95);
+}
+/* --- АНИМАЦИИ --- */
+.floating-text {
+    position: absolute;
+    color: #fff;
+    font-weight: bold;
+    font-size: 24px;
+    pointer-events: none;
+    animation: floatUp 1s ease-out forwards;
+    z-index: 100;
+    text-shadow: 0 0 5px #000;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100px); opacity: 0; }
+}

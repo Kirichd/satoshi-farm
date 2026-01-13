@@ -5,32 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Satoshi Farm</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=IOS_REPAINT_FIX">
+    <link rel="stylesheet" href="style.css?v=CSS_BG_FIX">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <style>
-        .menu-item {
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
-            background: rgba(18, 18, 30, 0.98) !important; 
-            transform: translateZ(0); 
-        }
+        /* Принудительно чиним текст */
         .menu-item span {
-            z-index: 10;
+            color: #ffffff !important;
+            z-index: 100;
             position: relative;
+            display: block !important;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5); /* Чтобы текст читался на любом фоне */
         }
-        /* Скрываем картинки до момента "пинка", чтобы не было мигания пустоты */
-        .menu-item img {
-            opacity: 0;
-            transition: opacity 0.3s ease;
+
+        /* Класс для коробочки под иконку */
+        .icon-box {
+            width: 38px;
+            height: 38px;
+            display: block;
+            margin: 0 auto 4px auto; /* Центрируем и отступ снизу */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 6px; /* Чуть скруглим углы картинки */
         }
-        .menu-item img.loaded {
-            opacity: 1;
+
+        /* ПРЯМЫЕ ССЫЛКИ НА КАРТИНКИ
+           Здесь мы указываем путь ./файл.jpg
+        */
+        .bg-info { background-image: url('./info_new.jpg?v=css'); }
+        .bg-task { background-image: url('./task_new.jpg?v=css'); }
+        .bg-earn { background-image: url('./earn_new.jpg?v=css'); }
+        .bg-user { background-image: url('./user_new.jpg?v=css'); }
+
+        /* Фикс для самого меню, чтобы оно не пропадало */
+        .bottom-menu {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(20, 20, 30, 0.95);
         }
     </style>
 </head>
 <body>
     <div class="phone-container">
+        
         <div class="clouds-layer"><div class="layer-back"></div><div class="layer-front"></div></div>
         <div class="solar-glow-layer"></div>
 
@@ -53,59 +71,27 @@
 
         <div class="bottom-menu">
             <div class="menu-item" onclick="selectTab(this)">
-                <img id="img-info" src="./info_new.jpg" width="38" height="38" alt="Info">
+                <div class="icon-box bg-info"></div>
                 <span>INFO</span>
             </div>
 
             <div class="menu-item" onclick="selectTab(this)">
-                <img id="img-task" src="./task_new.jpg" width="38" height="38" alt="Task">
+                <div class="icon-box bg-task"></div>
                 <span>TASK</span>
             </div>
 
             <div class="menu-item active" onclick="selectTab(this)">
-                <img id="img-earn" src="./earn_new.jpg" width="38" height="38" alt="Earn">
+                <div class="icon-box bg-earn"></div>
                 <span>EARN</span>
             </div>
 
             <div class="menu-item" onclick="selectTab(this)">
-                <img id="img-user" src="./user_new.jpg" width="38" height="38" alt="User">
+                <div class="icon-box bg-user"></div>
                 <span>USER</span>
             </div>
         </div>
+
     </div>
-    
     <script src="script.js"></script>
-    
-    <script>
-        window.addEventListener('load', function() {
-            var now = new Date().getTime(); // Уникальная метка времени
-
-            function kickStartImage(id, filename) {
-                var img = document.getElementById(id);
-                if (img) {
-                    // Заставляем браузер перекачать картинку, добавляя ?t=время
-                    var newSrc = filename + "?t=" + now;
-                    img.src = newSrc;
-                    
-                    // Плавно показываем картинку, когда она загрузится
-                    img.onload = function() {
-                        img.classList.add('loaded');
-                    };
-                    // Если она уже была в кэше, событие может не сработать, поэтому проверяем:
-                    if (img.complete) {
-                        img.classList.add('loaded');
-                    }
-                }
-            }
-
-            // Запускаем через 50мс после старта
-            setTimeout(function() {
-                kickStartImage('img-info', './info_new.jpg');
-                kickStartImage('img-task', './task_new.jpg');
-                kickStartImage('img-earn', './earn_new.jpg');
-                kickStartImage('img-user', './user_new.jpg');
-            }, 50);
-        });
-    </script>
 </body>
 </html>

@@ -161,7 +161,7 @@ body {
     transform: translateX(-50%) scale(0.97); 
 }
 
-/* --- НИЖНЕЕ МЕНЮ (МАКСИМАЛЬНО БОЛЬШИЕ ИКОНКИ + ТЕКСТ СБОКУ) --- */
+/* --- НИЖНЕЕ МЕНЮ (УЛУЧШЕНО: КРУПНЫЙ ТЕКСТ ВПЛОТНУЮ) --- */
 .bottom-menu {
     position: absolute;
     bottom: 15px; 
@@ -192,7 +192,8 @@ body {
     align-items: center;
     justify-content: center;
     
-    padding: 0 5px; /* Уменьшил паддинги, чтобы крупный текст не сжимался */
+    /* Уменьшили внутренние отступы, чтобы влез крупный текст */
+    padding: 0 5px; 
     backdrop-filter: blur(12px); 
     transition: all 0.2s ease;
     cursor: pointer;
@@ -206,7 +207,7 @@ body {
     object-fit: contain; 
     display: block;
     
-    /* ИЗМЕНЕНО: Отступ уменьшен до 3px, чтобы текст был вплотную */
+    /* ИЗМЕНЕНО: Отступ уменьшен до 3px, чтобы надпись была вплотную */
     margin-right: 3px; 
     margin-bottom: 0;
     
@@ -214,15 +215,15 @@ body {
     image-rendering: -webkit-optimize-contrast;
 }
 
-/* --- НАСТРОЙКА ТЕКСТА --- */
+/* --- НАСТРОЙКА ТЕКСТА (УВЕЛИЧЕН И УПЛОТНЕН) --- */
 .menu-item span {
     display: block; 
     color: #ffffff;
-    /* ИЗМЕНЕНО: Шрифт увеличен до 16px */
+    /* ИЗМЕНЕНО: Шрифт увеличен до 16px и жирность до 900 */
     font-size: 16px; 
-    font-weight: 900; /* Максимальная жирность */
+    font-weight: 900; 
     text-transform: uppercase;
-    letter-spacing: 0.2px; /* Чуть плотнее буквы */
+    letter-spacing: 0.2px; 
     line-height: 1;
 }
 

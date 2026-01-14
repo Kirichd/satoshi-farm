@@ -2,26 +2,50 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#000000">
     <meta name="description" content="Satoshi Farm - игра для заработка TON">
     <title>Satoshi Farm</title>
+    
+    <link rel="icon" href="data:;base64,=">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=111">
+    <link rel="stylesheet" href="style.css?v=112">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <style>
+        /* Базовые настройки для иконки-коробочки */
+        .menu-icon-box {
+            width: 32px;
+            height: 32px;
+            display: block;
+            margin: 0 auto 4px auto;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* Привязка картинок через CSS (Самый надежный способ) */
+        /* Добавил ?v=css, чтобы сбросить кэш */
+        .icon-info { background-image: url('info.png?v=css'); }
+        .icon-task { background-image: url('task.png?v=css'); }
+        .icon-earn { background-image: url('earn.png?v=css'); }
+        .icon-user { background-image: url('user.png?v=css'); }
+
+        /* Фикс для текста, чтобы он не пропадал */
+        .menu-item span {
+            position: relative;
+            z-index: 10;
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <div class="phone-container">
-        <!-- Background layers -->
         <div class="background-layers">
-            <div class="clouds-layer">
-                <div class="layer-back"></div>
-                <div class="layer-front"></div>
-            </div>
             <div class="solar-glow-layer"></div>
         </div>
 
-        <!-- Top stats -->
         <header class="top-stats">
             <div class="stat-card" role="region" aria-labelledby="deposit-label">
                 <div class="stat-top">
@@ -47,31 +71,38 @@
             </div>
         </header>
 
-        <!-- Main content -->
         <main class="character-section">
-            <img src="character.png?v=update6" id="hero" class="hero-img" alt="Персонаж Сатоши для взаимодействия" role="button" tabindex="0">
+            <img src="character.png?v=update7" id="hero" class="hero-img" alt="Персонаж Сатоши" role="button" tabindex="0">
         </main>
 
-        <!-- Bottom menu -->
         <nav class="bottom-menu" role="navigation" aria-label="Main menu">
+            
             <button class="menu-item" type="button" aria-label="Информация">
-                <img src="info.png?v=update6" alt="Иконка информации">
+                <div class="menu-icon-box icon-info"></div>
                 <span>INFO</span>
             </button>
+            
             <button class="menu-item" type="button" aria-label="Задачи">
-                <img src="task.png?v=update6" alt="Иконка задач">
+                <div class="menu-icon-box icon-task"></div>
                 <span>TASK</span>
             </button>
+            
             <button class="menu-item" type="button" aria-label="Заработок">
-                <img src="earn.png?v=update6" alt="Иконка заработка">
+                <div class="menu-icon-box icon-earn"></div>
                 <span>EARN</span>
             </button>
+            
             <button class="menu-item" type="button" aria-label="Пользователь">
-                <img src="user.png?v=update6" alt="Иконка пользователя">
+                <div class="menu-icon-box icon-user"></div>
                 <span>USER</span>
             </button>
+            
         </nav>
     </div>
     <script src="script.js"></script>
+    <script>
+        // Сообщаем Телеграму, что приложение готово и нужно развернуть его
+        window.Telegram.WebApp.expand();
+    </script>
 </body>
 </html>

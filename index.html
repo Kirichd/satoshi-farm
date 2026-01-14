@@ -4,15 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Satoshi Farm</title>
+    
+    <link rel="icon" href="data:;base64,=">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=110">
+    <link rel="stylesheet" href="style.css?v=NO_ERRORS">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <link rel="preload" as="image" href="info.png">
+    <link rel="preload" as="image" href="task.png">
+    <link rel="preload" as="image" href="earn.png">
+    <link rel="preload" as="image" href="user.png">
 </head>
 <body>
     <div class="phone-container">
         
-        <div class="clouds-layer"><div class="layer-back"></div><div class="layer-front"></div></div>
-
         <div class="solar-glow-layer"></div>
 
         <div class="top-stats header"> 
@@ -22,7 +28,7 @@
                     <span class="stat-value">0.028</span>
                 </div>
                 <div class="stat-sub">
-                    <img src="ton.png?v=1" class="ton-icon" alt="TON">
+                    <img src="ton.png" class="ton-icon" alt="TON">
                     TON
                 </div>
                 <button class="stat-btn">↑ Вклад</button>
@@ -33,7 +39,7 @@
                     <span class="stat-value" id="score">3,887,500</span>
                 </div>
                 <div class="stat-sub">
-                    <img src="ton.png?v=1" class="ton-icon" alt="TON">
+                    <img src="ton.png" class="ton-icon" alt="TON">
                     TON
                 </div>
                 <button class="stat-btn">↑ Доход</button>
@@ -41,24 +47,24 @@
         </div>
 
         <div class="character-section hero-section">
-            <img src="character.png?v=update6" id="hero" class="hero-img" onclick="handleTap(event)" alt="Hero">
+            <img src="character.png" id="hero" class="hero-img" onclick="handleTap(event)" alt="Hero">
         </div>
 
         <div class="bottom-menu">
-            <div class="menu-item">
-                <img src="info.png?v=update6" alt="Info">
+            <div class="menu-item" onclick="selectTab(this)">
+                <img src="info.png?v=fixed" alt="Info">
                 <span>INFO</span>
             </div>
-            <div class="menu-item">
-                <img src="task.png?v=update6" alt="Task">
+            <div class="menu-item" onclick="selectTab(this)">
+                <img src="task.png?v=fixed" alt="Task">
                 <span>TASK</span>
             </div>
-            <div class="menu-item">
-                <img src="earn.png?v=update6" alt="Earn">
+            <div class="menu-item active" onclick="selectTab(this)">
+                <img src="earn.png?v=fixed" alt="Earn">
                 <span>EARN</span>
             </div>
-            <div class="menu-item">
-                <img src="user.png?v=update6" alt="User">
+            <div class="menu-item" onclick="selectTab(this)">
+                <img src="user.png?v=fixed" alt="User">
                 <span>USER</span>
             </div>
         </div>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Satoshi Farm - игра для заработка TON">
+    <title>Satoshi Farm</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=111">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div class="phone-container">
+        <!-- Background layers -->
+        <div class="background-layers">
+            <div class="clouds-layer">
+                <div class="layer-back"></div>
+                <div class="layer-front"></div>
+            </div>
+            <div class="solar-glow-layer"></div>
+        </div>
+
+        <!-- Top stats -->
+        <header class="top-stats">
+            <div class="stat-card" role="region" aria-labelledby="deposit-label">
+                <div class="stat-top">
+                    <div class="icon-circle" aria-hidden="true">▼</div>
+                    <span class="stat-value">0.028</span>
+                </div>
+                <div class="stat-sub">
+                    <img src="ton.png?v=1" class="ton-icon" alt="Иконка TON">
+                    TON
+                </div>
+                <button class="stat-btn" type="button" aria-label="Вложить средства">↑ Вклад</button>
+            </div>
+            <div class="stat-card" role="region" aria-labelledby="income-label">
+                <div class="stat-top">
+                    <div class="icon-circle" aria-hidden="true">▼</div>
+                    <span class="stat-value" id="score">3,887,500</span>
+                </div>
+                <div class="stat-sub">
+                    <img src="ton.png?v=1" class="ton-icon" alt="Иконка TON">
+                    TON
+                </div>
+                <button class="stat-btn" type="button" aria-label="Посмотреть доход">↑ Доход</button>
+            </div>
+        </header>
+
+        <!-- Main content -->
+        <main class="character-section">
+            <img src="character.png?v=update6" id="hero" class="hero-img" alt="Персонаж Сатоши для взаимодействия" role="button" tabindex="0">
+        </main>
+
+        <!-- Bottom menu -->
+        <nav class="bottom-menu" role="navigation" aria-label="Main menu">
+            <button class="menu-item" type="button" aria-label="Информация">
+                <img src="info.png?v=update6" alt="Иконка информации">
+                <span>INFO</span>
+            </button>
+            <button class="menu-item" type="button" aria-label="Задачи">
+                <img src="task.png?v=update6" alt="Иконка задач">
+                <span>TASK</span>
+            </button>
+            <button class="menu-item" type="button" aria-label="Заработок">
+                <img src="earn.png?v=update6" alt="Иконка заработка">
+                <span>EARN</span>
+            </button>
+            <button class="menu-item" type="button" aria-label="Пользователь">
+                <img src="user.png?v=update6" alt="Иконка пользователя">
+                <span>USER</span>
+            </button>
+        </nav>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

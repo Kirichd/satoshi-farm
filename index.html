@@ -1,20 +1,17 @@
-<!DOCTYPE html>
+ъ<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#000000">
-    <meta name="description" content="Satoshi Farm - игра для заработка TON">
     <title>Satoshi Farm</title>
     
     <link rel="icon" href="data:;base64,=">
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=112">
+    <link rel="stylesheet" href="style.css?v=160">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <style>
-        /* Базовые настройки для иконки-коробочки */
         .menu-icon-box {
             width: 32px;
             height: 32px;
@@ -24,85 +21,174 @@
             background-repeat: no-repeat;
             background-position: center;
         }
-
-        /* Привязка картинок через CSS (Самый надежный способ) */
-        /* Добавил ?v=css, чтобы сбросить кэш */
+        
         .icon-info { background-image: url('info.png?v=css'); }
         .icon-task { background-image: url('task.png?v=css'); }
         .icon-earn { background-image: url('earn.png?v=css'); }
         .icon-user { background-image: url('user.png?v=css'); }
 
-        /* Фикс для текста, чтобы он не пропадал */
-        .menu-item span {
-            position: relative;
-            z-index: 10;
-            display: block;
+        .icon-game { 
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238f9bb3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='6' width='20' height='12' rx='2'/%3E%3Cpath d='M6 12h4'/%3E%3Cpath d='M8 10v4'/%3E%3Cline x1='15' y1='13' x2='15.01' y2='13'/%3E%3Cline x1='18' y1='11' x2='18.01' y2='11'/%3E%3C/svg%3E");
+        }
+        .menu-item.active .icon-game {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300d2ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='6' width='20' height='12' rx='2'/%3E%3Cpath d='M6 12h4'/%3E%3Cpath d='M8 10v4'/%3E%3Cline x1='15' y1='13' x2='15.01' y2='13'/%3E%3Cline x1='18' y1='11' x2='18.01' y2='11'/%3E%3C/svg%3E");
         }
     </style>
 </head>
 <body>
     <div class="phone-container">
         <div class="background-layers">
+            <div class="clouds-layer">
+                <div class="layer-back"></div>
+                <div class="layer-front"></div>
+            </div>
             <div class="solar-glow-layer"></div>
         </div>
 
-        <header class="top-stats">
-            <div class="stat-card" role="region" aria-labelledby="deposit-label">
-                <div class="stat-top">
-                    <div class="icon-circle" aria-hidden="true">▼</div>
-                    <span class="stat-value">0.028</span>
-                </div>
-                <div class="stat-sub">
-                    <img src="ton.png?v=1" class="ton-icon" alt="Иконка TON">
-                    TON
-                </div>
-                <button class="stat-btn" type="button" aria-label="Вложить средства">↑ Вклад</button>
-            </div>
-            <div class="stat-card" role="region" aria-labelledby="income-label">
-                <div class="stat-top">
-                    <div class="icon-circle" aria-hidden="true">▼</div>
-                    <span class="stat-value" id="score">3,887,500</span>
-                </div>
-                <div class="stat-sub">
-                    <img src="ton.png?v=1" class="ton-icon" alt="Иконка TON">
-                    TON
-                </div>
-                <button class="stat-btn" type="button" aria-label="Посмотреть доход">↑ Доход</button>
-            </div>
-        </header>
+        <div class="screens-container">
 
-        <main class="character-section">
-            <img src="character.png?v=update7" id="hero" class="hero-img" alt="Персонаж Сатоши" role="button" tabindex="0">
-        </main>
+            <div id="screen-info" class="screen">
+                <div class="glass-panel">
+                    <h2>INFO</h2>
+                    <p>Информация о проекте.</p>
+                </div>
+            </div>
 
-        <nav class="bottom-menu" role="navigation" aria-label="Main menu">
-            
-            <button class="menu-item" type="button" aria-label="Информация">
+            <div id="screen-task" class="screen">
+                <div class="glass-panel">
+                    <h2>TASKS</h2>
+                    <p>Задания скоро появятся.</p>
+                </div>
+            </div>
+
+            <div id="screen-earn" class="screen active-screen">
+                <div class="top-layer">
+                    <header class="top-stats">
+                        <div class="stat-card">
+                            <div class="stat-top">
+                                <span class="stat-value">0.028</span>
+                            </div>
+                            <div class="stat-sub">
+                                <img src="ton.png?v=1" class="ton-icon" alt="TON"> TON
+                            </div>
+                            <button class="stat-btn" type="button">ВКЛАД</button>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-top">
+                                <span class="stat-value" id="score">3,887,500</span>
+                            </div>
+                            <div class="stat-sub">
+                                <img src="ton.png?v=1" class="ton-icon" alt="TON"> TON
+                            </div>
+                            <button class="stat-btn" type="button">ДОХОД</button>
+                        </div>
+                    </header>
+
+                    <div class="promo-banner">
+                        <div class="banner-left">
+                            <span class="banner-title">SATOSHI<br>FARM</span>
+                            <div class="banner-line"></div>
+                        </div>
+                        <div class="banner-sep"></div>
+                        <div class="banner-right">
+                            <div class="banner-label">баланс пула</div>
+                            <div class="banner-val-row">
+                                <img src="ton.png" class="ton-icon-lg" alt="TON">
+                                <span class="banner-big-num">152.285</span>
+                            </div>
+                            <div class="banner-approx">≈ 218,103$</div>
+                        </div>
+                    </div>
+                </div> 
+
+                <div class="character-section">
+                    <img src="character.png?v=update7" id="hero" class="hero-img" alt="Персонаж" role="button" tabindex="0">
+                </div>
+            </div>
+
+            <div id="screen-game" class="screen">
+                <div class="glass-panel">
+                    <h2>GAMES</h2>
+                    <p>Игровой раздел в разработке.</p>
+                </div>
+            </div>
+
+            <div id="screen-user" class="screen">
+                <div class="user-container">
+                    
+                    <div class="profile-header">
+                        <div class="avatar-wrapper">
+                            <img src="character.png" id="user-avatar" alt="User Avatar">
+                        </div>
+                        <span class="profile-username" id="user-name">@username</span>
+                    </div>
+
+                    <div class="balance-card-user">
+                        <div class="balance-left">
+                            <span class="balance-label-sm">Rolls баланс</span>
+                            <div class="balance-row-lg">
+                                <img src="ton.png" class="ton-icon-med" alt="TON">
+                                <span class="balance-amount">0 TON</span>
+                            </div>
+                        </div>
+                        <div class="balance-right">
+                            <button class="btn-deposit">Пополнить</button>
+                            <button class="btn-wallet" aria-label="Wallet">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M16 12H21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M3 7L21 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <nav class="bottom-menu">
+            <button class="menu-item" data-screen="screen-info">
                 <div class="menu-icon-box icon-info"></div>
                 <span>INFO</span>
             </button>
-            
-            <button class="menu-item" type="button" aria-label="Задачи">
+            <button class="menu-item" data-screen="screen-task">
                 <div class="menu-icon-box icon-task"></div>
                 <span>TASK</span>
             </button>
-            
-            <button class="menu-item" type="button" aria-label="Заработок">
+            <button class="menu-item active" data-screen="screen-earn">
                 <div class="menu-icon-box icon-earn"></div>
                 <span>EARN</span>
             </button>
-            
-            <button class="menu-item" type="button" aria-label="Пользователь">
+            <button class="menu-item" data-screen="screen-game">
+                <div class="menu-icon-box icon-game"></div>
+                <span>GAME</span>
+            </button>
+            <button class="menu-item" data-screen="screen-user">
                 <div class="menu-icon-box icon-user"></div>
                 <span>USER</span>
             </button>
-            
         </nav>
     </div>
+
     <script src="script.js"></script>
     <script>
-        // Сообщаем Телеграму, что приложение готово и нужно развернуть его
         window.Telegram.WebApp.expand();
+
+        const tg = window.Telegram.WebApp;
+        if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+            const user = tg.initDataUnsafe.user;
+            const usernameEl = document.getElementById('user-name');
+            if (user.username) {
+                usernameEl.innerText = '@' + user.username;
+            } else {
+                usernameEl.innerText = user.first_name;
+            }
+            if (user.photo_url) {
+                document.getElementById('user-avatar').src = user.photo_url;
+            }
+        }
     </script>
 </body>
 </html>

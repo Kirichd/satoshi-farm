@@ -69,15 +69,11 @@ body {
     width: 100%;
 }
 
-/* КАРТОЧКИ (СИЛЬНЫЙ БЛЮР) */
+/* КАРТОЧКИ */
 .stat-card {
-    /* Полупрозрачный фон для эффекта стекла */
     background: rgba(20, 20, 30, 0.4);
-    
-    /* БЛЮР */
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
-    
     border: 1px solid var(--glass-border);
     border-top: 1px solid var(--glass-highlight);
     border-radius: 16px;
@@ -123,7 +119,6 @@ body {
 
 .stat-btn {
     width: 100%;
-    /* Прозрачный фон кнопки */
     background: rgba(0, 0, 0, 0.25);
     border: 1px solid rgba(0, 210, 255, 0.2);
     border-radius: 10px;
@@ -134,11 +129,8 @@ body {
     text-transform: uppercase; 
     letter-spacing: 1px; 
     text-shadow: 0 0 8px rgba(0, 210, 255, 0.4); 
-    
-    /* БЛЮР ПОД КНОПКОЙ */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -151,16 +143,12 @@ body {
     text-shadow: 0 0 10px #fff;
 }
 
-/* --- BANNER SATOSHI FARM (СИЛЬНЫЙ БЛЮР) --- */
+/* --- BANNER SATOSHI FARM --- */
 .promo-banner {
     margin: 0 16px;
-    /* Полупрозрачный фон */
     background: rgba(20, 25, 40, 0.5);
-    
-    /* БЛЮР */
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
-    
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 16px;
@@ -198,7 +186,7 @@ body {
 .banner-big-num { font-size: 1.6rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
 .banner-approx { font-size: 0.7rem; color: #6e7f99; margin-top: 2px; font-weight: 600; }
 
-/* --- SCREENS (ABSOLUTE LAYOUT) --- */
+/* --- SCREENS --- */
 .screens-container {
     position: absolute;
     top: 0;
@@ -227,18 +215,14 @@ body {
     to { opacity: 1; } 
 }
 
-/* GLASS BACKGROUND FOR TABS (INFO, TASK, GAME, USER) */
+/* Tab contents */
 #screen-info,
 #screen-task,
 #screen-game,
 #screen-user {
-    /* Более темный фон (как просил) */
     background: rgba(10, 10, 16, 0.75); 
-    
-    /* МЯГКИЙ БЛЮР (14px) - как просил */
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    
     z-index: 15;
     padding-top: 20px;
     padding-bottom: 100px;
@@ -263,7 +247,7 @@ body {
 }
 .glass-panel h2 { color: var(--primary-color); margin-bottom: 10px; }
 
-/* USER TAB STYLES */
+/* USER TAB */
 .user-container {
     padding: 20px 16px;
     display: flex;
@@ -378,18 +362,8 @@ body {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none; z-index: 1;
 }
-.clouds-layer { position: absolute; top: 0; left: 0; width: 100%; height: 40%; opacity: 0.5; }
-.layer-back {
-    height: 100%; background-image: url('clouds.png'); background-repeat: repeat-x;
-    background-position: top center; background-size: auto 70%; opacity: 0.7;
-    animation: moveClouds 90s linear infinite;
-}
-.layer-front {
-    height: 100%; background-image: url('clouds.png'); background-repeat: repeat-x;
-    background-position: top center; background-size: auto 90%; transform: scaleX(-1);
-    animation: moveClouds 60s linear infinite;
-}
-@keyframes moveClouds { from { background-position-x: 0; } to { background-position-x: -200%; } }
+
+/* ОСТАВИЛ ТОЛЬКО СВЕЧЕНИЕ, ОБЛАКА УДАЛИЛ */
 .solar-glow-layer {
     position: absolute; top: 20%; left: -10%; width: 50%; height: 50%;
     background: radial-gradient(circle, rgba(0, 210, 255, 0.15) 0%, rgba(0,0,0,0) 70%);

@@ -6,7 +6,10 @@ function handleTap(event) {
     event.preventDefault();
     // Increase score
     score += 10;
-    document.getElementById('score').innerText = score.toLocaleString();
+    const scoreElement = document.getElementById('score');
+    if (scoreElement) {
+        scoreElement.innerText = score.toLocaleString();
+    }
 
     // Create floating number
     const floatingText = document.createElement('div');
@@ -28,23 +31,31 @@ function handleTap(event) {
         if (floatingText.parentNode) {
             floatingText.parentNode.removeChild(floatingText);
         }
-    }, 1000);
+    }, 800);
 }
 
-// Function to switch menu tabs
+// Function to switch screens
 function handleMenuClick(event) {
-    const item = event.currentTarget;
-    // Remove 'active' class from all buttons
+    const button = event.currentTarget;
+    const targetScreenId = button.getAttribute('data-screen');
+    
+    // 1. Update Menu Buttons visual state
     document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
+    button.classList.add('active');
 
-    // Add 'active' class to clicked button
-    item.classList.add('active');
+    // 2. Switch Screens
+    // Hide all screens
+    document.querySelectorAll('.screen').forEach(screen => {
+        screen.classList.remove('active-screen');
+    });
 
-    // Log selection (can be replaced with navigation)
-    const label = item.querySelector('span').innerText;
-    console.log("Selected tab:", label);
+    // Show target screen
+    const targetScreen = document.getElementById(targetScreenId);
+    if (targetScreen) {
+        targetScreen.classList.add('active-screen');
+    }
 
-    // Here you can add logic for navigating to other screens or calling functions
+    console.log("Switched to:", targetScreenId);
 }
 
 // Initialization on DOM load
@@ -53,38 +64,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuItems = document.querySelectorAll('.menu-item');
 
     // Add handlers for hero
-    hero.addEventListener('click', handleTap);
-    hero.addEventListener('touchstart', handleTap, { passive: true });
+    if (hero) {
+        hero.addEventListener('click', handleTap);
+        hero.addEventListener('touchstart', handleTap, { passive: false }); // passive: false to allow preventDefault
+    }
 
     // Add handlers for menu
     menuItems.forEach(item => {
         item.addEventListener('click', handleMenuClick);
-        item.addEventListener('touchstart', handleMenuClick, { passive: true });
-
-        // Keyboard support
-        item.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                handleMenuClick({ currentTarget: item });
-            }
-        });
+        // We use click for logic, touchstart might be added for faster response if needed, 
+        // but often click is enough for hybrid apps.
     });
-
-    // Set first tab active by default
-    if (menuItems.length > 0) {
-        menuItems[0].classList.add('active');
-    }
 });
 
-// Error handling (optional)
+// Error handling
 window.addEventListener('error', (event) => {
-    console.error('Error:', event.error);
+    console.error('JS Error:', event.error);
 });
-
-// PWA support (if needed)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        // Register service worker (if sw.js file exists)
-        // navigator.serviceWorker.register('/sw.js');
-    });
-}
